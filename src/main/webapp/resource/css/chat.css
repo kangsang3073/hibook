@@ -1,0 +1,155 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+html,body{
+	margin : 0px;
+	padding : 0px;
+	background-color : #EAEAEA;
+	
+}
+.container{
+	margin : 0px;
+	padding : 0px;
+	display : flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.chatlogo{
+	height : 80px;
+	width : 100%;
+	background-color : #212529;
+	overflow : hidden;
+	margin: 0;
+	position : relative;
+}
+
+.logoimg > img {
+	width : 60px;
+	height : 55px;
+	display : inline;
+	position : absolute;
+	top : 16px;
+	left : 8px;
+}
+
+.gobox > img{
+	right : 20px;
+	width : 40px;
+	height : 50px;
+	cursor : pointer;
+	position : absolute;
+}
+
+.chatarea{
+	padding : 0px;
+	width : 430px;
+	height : 70px;
+	position : relative;
+	margin : 5px 0px 2px 5px;
+}
+
+.chatList {
+	position : relative;
+}
+
+.submitarea > img {
+	height : 40px;
+	width : 40px;
+	float : right;
+	position : absolute;
+	bottom : 7px;
+	right : 7px;
+}
+
+.submitarea {
+	height : 95px;
+	width : 100%;
+	background-color : #212529;
+	position : absolute;
+	bottom : 0;
+}
+
+textarea {
+	height : 50px;
+	border-radius : 10px;
+	resize : none;
+	font-size : 13px;
+}
+
+.mychat{
+	margin-top : 10px;
+	margin-right : 7px;
+	text-align : right;
+}
+
+.mychatroom{
+	display : inline-block;
+	position : relative;
+	background-color : #C5C5C5;
+	border : 1px solid #C5C5C5;
+	border-radius : 10px;
+	color : black;
+	padding : 0px 13px;
+	margin-bottom : 3px;
+	max-width : 230px;
+	font-family:'notosanskr';
+	font-size : 13px;
+}
+
+.mytime{
+	position: absolute;
+	left : -114px;
+	top : 30px;
+	color : #c0c0c0;
+	font-size : 11px;
+}
+
+.yourchat{
+	margin-top : 10px;
+	margin-left : 5px;
+	text-align : left;
+}
+
+.yourid {
+	font-size : 16px;
+	color : #fff;
+	position : absolute;
+	left : 73px;
+	top : 50px;
+	font-style : bold;
+	font-family:'notosanskr';
+}
+
+.yourchat > img {
+	border-radius : 40%;
+	width: 40px;
+	height: 40px;
+	padding-right : 3px;
+	object-fit : cover;
+}
+
+.yourchatroom{
+	display : inline-block;
+	position : relative;
+	background-color : #51585e;
+	border-radius : 10px;
+	color : #fff;
+	padding : 0px 13px;
+	margin-bottom : 3px;
+	max-width : 230px;
+	font-family:'notosanskr';
+	font-size : 13px;
+}
+.yourtime{
+	position: absolute;
+	right : -116px;
+	top : 30px;
+	color : #c0c0c0;
+	font-size : 11px;
+}
+
+h5 {
+	font-size : 12px;
+}

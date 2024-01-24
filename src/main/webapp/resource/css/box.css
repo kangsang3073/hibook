@@ -1,0 +1,162 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+
+html,body{
+	margin : 0px;
+	padding : 0px;
+	background-color : #EAEAEA;
+}
+
+.container{
+	margin : 0px;
+	padding : 0px;
+	display : flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.chatboxlogo{
+	height : 80px;
+	width : 100%;
+	background-color : #212529;
+	overflow : hidden;
+/* 	text-align : center; */
+	position : relative;
+	margin: 0;
+}
+
+.mylist {
+	position : absolute;
+	color : #fff;
+	left : 80px;
+	top : 50px;
+	font-style : bold;
+	font-size : 16px;
+	font-family:'notosanskr';
+}
+
+.chatboxlogo > img{
+	width : 75px;
+	height : 75px;
+	margin : 5px auto;
+	position : absolute;
+	left : 5px;
+}
+
+.a{
+	position : relative;
+}
+
+.messagelist {	
+	 border: 1px solid #dddddd;
+	 margin: 0 auto;
+	 width : 100%;
+}
+
+.chatboxfoot {
+	width : 100%;
+	height : 80px;
+	background-color : #212529;
+	position : absolute;
+	bottom : 0;
+	margin: 0;
+	text-align : center;
+}
+
+.footlogo > img {
+	height : 30px;
+	width : 30px;
+	bottom : 0px;
+}
+
+.hibook {
+	color : #c5bbd5;
+	left : 250px;
+	top : 40px;
+	font-size : 35px;
+}
+
+.footlogo{
+	bottom : 0;
+	margin-left : 330px;
+	margin-bottom : 15px;
+	position : fixed;
+}
+
+h4{
+	font-family:'Noto Sans KR';
+}
+
+td {
+	border-bottom : 1px solid #BDBDBD;
+/* 	border-collapse : collapse; */
+	height : 100px;
+	cursor : pointer;
+}
+
+.boxprofile {
+	margin: 4px 0px 0px 0px; 
+/* 	max-width: 80px; */
+/* 	max-height: 100px; */
+	width : 80px;
+	height : 80px;
+	border-radius : 100px;
+	object-fit : cover;
+}
+
+.boxuserid {
+	font-size : 14px;
+	font-weight : bold;
+	font-family:'notosanskr';
+}
+
+.boxunread {
+	display : inline-block;
+	border-radius : 20%;
+	width : 21px;
+	height : 21px;
+	color : #fff;
+	background-color : #FF1212;
+	position : absolute;
+	right : 5px;
+	top : 25px;
+	font-size : 15px;
+	font-weight : border;
+	font-family:'notosanskr';
+}
+
+.boxunread:empty {
+  display: none;
+}
+
+.boxtd {
+	position : relative;
+}
+
+.boxcontent {
+	left : 10px;
+	top : 30px;
+	font-family:'notosanskr';
+	font-size : 14px;
+	position : absolute;
+	
+}
+
+.boxbookmark {
+	position : absolute;
+	width : 35px;
+	height : 40px;
+	right : 3px;
+	top : 40px;
+}
+
+.boxchattime {
+	font-size : 13px;
+	position : absolute;
+	right : 5px;
+	top : 3px;
+	color : #8C8C8C;
+}

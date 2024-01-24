@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Model2</display-name>
+<!--   주소가 입력되어있지 않으면 찾는파일 -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+<!--   *.me 가상주소 -> 주소매핑 처리 파일로 연결 -> 처리담당자(서블릿) -->
+  <servlet>
+	<servlet-name>MemberFrontController</servlet-name>
+	<servlet-class>com.itwillbs.member.action.MemberFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>MemberFrontController</servlet-name>
+  	<url-pattern>*.me</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>MarketFrontController</servlet-name>
+	<servlet-class>com.itwillbs.market.action.MarketFrontController</servlet-class>
+  </servlet>
+  
+    <servlet-mapping>
+  	<servlet-name>MarketFrontController</servlet-name>
+  	<url-pattern>*.ma</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  		<servlet-name>BoardFrontController</servlet-name>
+  		<servlet-class>com.itwillbs.board.action.BoardFrontController</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+  <servlet-name>BoardFrontController</servlet-name>
+  <url-pattern>*.bo</url-pattern>
+  </servlet-mapping>
+  
+    <!--   *.mypage 가상주소 -> 주소매핑 처리 파일로 연결 -> 처리담당자(서블릿) -->
+  <servlet>
+	<servlet-name>MypageFrontController</servlet-name>
+	<servlet-class>mypage.action.MypageFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>MypageFrontController</servlet-name>
+  	<url-pattern>*.mypage</url-pattern>
+  </servlet-mapping>
+  
+    <!--   *.adminpage 가상주소 -> 주소매핑 처리 파일로 연결 -> 처리담당자(서블릿) -->
+  <servlet>
+	<servlet-name>AdminpageFrontController</servlet-name>
+	<servlet-class>adminpage.action.AdminpageFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>AdminpageFrontController</servlet-name>
+  	<url-pattern>*.adminpage</url-pattern>
+  </servlet-mapping>
+  
+   <!--   *.profile 가상주소 -> 주소매핑 처리 파일로 연결 -> 처리담당자(서블릿) -->
+   <servlet>
+	<servlet-name>ReviewFrontController</servlet-name>
+	<servlet-class>com.itwillbs.review.action.ReviewFrontController</servlet-class>
+  </servlet>
+   
+  <servlet-mapping>
+  	<servlet-name>ReviewFrontController</servlet-name>
+  	<url-pattern>*.pr</url-pattern>
+  </servlet-mapping>
+  
+  
+    <!--   *.chat 가상주소 -> 주소매핑 처리 파일로 연결 -> 처리담당자(서블릿) -->
+  <servlet>
+	<servlet-name>ChatController</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatController</servlet-name>
+  	<url-pattern>*.hi</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>ChatSubmitServlet</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatSubmitServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatSubmitServlet</servlet-name>
+  	<url-pattern>/chatSubmitServlet</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+	<servlet-name>ChatListServlet</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatListServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatListServlet</servlet-name>
+  	<url-pattern>/chatListServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>ChatUnreadServlet</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatUnreadServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatUnreadServlet</servlet-name>
+  	<url-pattern>/chatUnread</url-pattern>
+  </servlet-mapping>
+  
+  
+    <servlet>
+	<servlet-name>ChatBoxServlet</servlet-name>
+	<servlet-class>com.itwillbs.chat.action.ChatBoxServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChatBoxServlet</servlet-name>
+  	<url-pattern>/chatBox</url-pattern>
+  </servlet-mapping>
+  
+     <servlet>
+	<servlet-name>ReportFrontController</servlet-name>
+	<servlet-class>com.itwillbs.report.action.ReportFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ReportFrontController</servlet-name>
+  	<url-pattern>*.re</url-pattern>
+  </servlet-mapping>
+</web-app>

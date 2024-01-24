@@ -1,0 +1,15 @@
+@charset "UTF-8";
+h1{
+text-align: center; 	
+}
+
+table{
+margin-left: 150px;	
+}
+
+ .Left {
+text-align:left;
+position:fixed;
+padding: 10px;
+cursor: pointer;
+}

@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Happiness-Sans-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 공통 CSS STRAT*/
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #fff;
+  font-family: 'Happiness-Sans-Title'; 
+}
+
+div {
+	word-break : break-all;
+}
+
+/* 공통 CSS END*/
+
+input[type="button"] {
+	cursor : pointer;
+	width: 100px;
+	padding: 0;
+	font-weight: 600;
+	text-align: center;
+	line-height: 35px;
+	background-color: #42444e;
+	color: #fff;
+	border-radius: 5px;
+	transition: all 0.2s;
+}
+
+/* MarketList START*/
+
+.board2 {
+	padding-right : 17.5px;
+	text-align: right;
+}
+
+.board3 {
+	text-align: center;
+}
+
+/* MarketList END*/
+
+/* MarketContnet START*/
+
+#idSpan {
+	position: relative;
+}
+
+#miniMenu {
+	width : 110px;
+	display: none;
+	position: absolute;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	padding: 10px;
+	z-index: 10;
+	background-color: #e4f2f3;
+	border-radius: 10px;
+}
+
+#profile {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	width : 100px;
+	height : 100px;
+	margin-bottom: 10px;
+	border-radius: 50%;
+}
+
+#profilImg {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+}
+
+#mmenu {
+	cursor: pointer;
+}
+
+#mmenu:hover {
+	color : purple;
+}
+
+/* MarketContnet END*/
+
+
+
+
+
+
+
