@@ -11,6 +11,9 @@ public class BoardCmmtDTO {
 	private int parentId;
 	private String secretYn;
 	private String insertId;
+	// 댓글 닉네임으로 보이게 변수 추가
+	private String nickname;
+	
 	private Timestamp insertDate;
 	
 	
@@ -55,6 +58,12 @@ public class BoardCmmtDTO {
 	}
 	public void setInsertDate(Timestamp insertDate) {
 		this.insertDate = insertDate;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	
 	

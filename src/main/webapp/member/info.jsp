@@ -27,7 +27,7 @@ MemberDTO dto=dao.getMember(id);
 	<%=dto.getJoinDate()%><br> 회원상태 :
 	<%=dto.getMemType()%>
 
-	<a href="MemberMain.me">메인으로 이동</a>
+	<a href="main.do">메인으로 이동</a>
 <!-- 푸터파일들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp"/>
 <!-- 푸터파일들어가는 곳 -->   

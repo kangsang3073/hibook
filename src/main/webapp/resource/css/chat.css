@@ -64,17 +64,24 @@ html,body{
 }
 
 .submitarea {
-	height : 95px;
+	height : 110px;
 	width : 100%;
 	background-color : #212529;
 	position : absolute;
 	bottom : 0;
+	margin : 0px;
 }
 
 textarea {
-	height : 50px;
+	height : 70px;
 	border-radius : 10px;
 	resize : none;
+	font-size : 13px;
+}
+
+#chat_content {
+	padding-top : 10px;
+	padding-left : 7px;
 	font-size : 13px;
 }
 
@@ -100,7 +107,7 @@ textarea {
 
 .mytime{
 	position: absolute;
-	left : -114px;
+	left : -117px;
 	top : 30px;
 	color : #c0c0c0;
 	font-size : 11px;

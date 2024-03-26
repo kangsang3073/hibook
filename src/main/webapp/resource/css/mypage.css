@@ -14,7 +14,7 @@
 	color: #fff;
 }
 
-.board:hover {
+.board2:hover {
 	background-color: #42444e;
 	color: #fff;
 }
@@ -73,21 +73,11 @@
 	float: left;
 }
 
-.menu7 {
-	border: 1px solid black;
-	width : 200px;
-	margin : 0 auto;
-}
-
-.menu7:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
 .menu1 {
 	border: 1px solid black;
 	width : 200px;
-	margin : 0 auto;
+	height: 40px;
+    margin: 10px;
 }
 
 .menu1:hover {
@@ -95,54 +85,9 @@
 	color: #fff;
 }
 
-.menu2 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu2:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu3 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu3:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu4 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu4:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu5 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu5:hover {
-	background-color: #42444e;
-	color: #fff;
-}
-
-.menu6 {
-	border: 1px solid black;
-	width : 200px;
-}
-
-.menu6:hover {
-	background-color: #42444e;
-	color: #fff;
+.me1 {
+	display: block;
+	padding: 10px;
 }
 
 /* id="fr" 모든자손 fieldset중에 마지막 테두리선 none  */

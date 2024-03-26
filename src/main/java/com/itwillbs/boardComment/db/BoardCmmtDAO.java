@@ -148,7 +148,11 @@ public class BoardCmmtDAO {
 				
 				// 3단계 sql - 기본 : num 기준 오름차순 → 수정 : 최근글 위로 올라오게 정렬
 //				String select = "select * from board order by num desc limit 시작행-1, 몇개";
-				String sql = "select * from board_cmmt where board_id = ? order by cmmt_id limit ?,?";
+				String sql = "select T.*, "
+						+ "(select nickname from members where mem_id = T.insert_id) as nickname " 
+						+ "from board_cmmt as T "
+						+ "where T.board_id = ? "
+						+ "order by T.cmmt_id limit ?,? ";
 				pstmt = con.prepareStatement(sql);
 		        pstmt.setInt(1, cmmtDto.getBoardId());
 		        pstmt.setInt(2, startRow);
@@ -169,6 +173,8 @@ public class BoardCmmtDAO {
 					cmmtDto1.setSecretYn(rs.getString("secret_yn"));
 					cmmtDto1.setInsertId(rs.getString("insert_id"));
 					cmmtDto1.setInsertDate(rs.getTimestamp("insert_date"));
+					cmmtDto1.setNickname(rs.getString("nickname"));
+					
 				
 					// 바구니의 주소값을 배열 한칸에 저장
 					boardCmmtList.add(cmmtDto1);

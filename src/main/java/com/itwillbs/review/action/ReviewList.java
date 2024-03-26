@@ -28,7 +28,7 @@ public class ReviewList implements Action{
 		insert_id = request.getParameter("insert_id");
 		tgt_id = insert_id;
 		}
-		System.out.println(insert_id);
+		System.out.println(tgt_id);
 		
 		StarReviewDAO dao=new StarReviewDAO();
 		

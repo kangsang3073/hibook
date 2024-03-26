@@ -43,6 +43,17 @@ public class MarketFrontController extends HttpServlet{
 		}
 		
 		
+		else if(sPath.equals("/MarketSortList.ma")) {
+			action = new MarketSortList();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 		else if(sPath.equals("/MarketWriteForm.ma")) {
 			forward=new ActionForward();
 			forward.setPath("market/MarketWriteForm.jsp");

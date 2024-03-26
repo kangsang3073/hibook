@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'BookkMyungjo-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
 .board_list td, .board_list th {
 	text-align: center;
 }
@@ -53,6 +61,12 @@
 .my-hr3 {
 	border: 0;
 	height: 3px;
+	background: #ccc;
+}
+
+.my-hr4 {
+	border: thick;
+	height: 10px;
 	background: #ccc;
 }
 
@@ -282,7 +296,7 @@
 	float: right;
 }
 
-.board_search #keword {
+.board_search #keyword {
 	/* width: 90%; */
 	/* float: right; */
 	/* text-align: left; */
@@ -372,4 +386,81 @@
 
 .page .active {
 	text-decoration: underline;
+}
+
+
+.cmmtnew {
+	/* display: block; */
+	/* position: relative; */
+	/* float: right; */
+	width: 5px;
+	padding: 0;
+	margin: 0;
+	font-weight: 20;
+	text-align: center;
+	/* line-height: 25px; */
+	color: #2c97ec;
+	/* border-radius: 2px; */
+	/* transition: all 0.2s; */
+	font-size: 3px;
+	text-align: center;
+}
+
+.cmmtbackground {
+/* 	background: #d3c1fa; */
+	padding: 3px 0px 0px 6px;
+	margin-right: 3px;
+}
+
+.back2{
+	background-color: #ededed9c;
+}
+.f20 {font-size:20px;}
+.f18 {font-size:18px;}
+.f15 {font-size:15px;}
+.f13 {font-size:13px;}
+
+.smallButtonCancle12 {
+	display: block;
+	position: relative;
+	float: right;
+	width: 80px;
+	padding: 0;
+	margin: 10px;
+	font-weight: 300;
+	text-align: center;
+	line-height: 25px;
+	color: #fff;
+	border-radius: 5px;
+	transition: all 0.2s;
+}
+
+.smallButtonSubmit12 {
+	display: block;
+	position: relative;
+	float: right;
+	width: 80px;
+	padding: 0;
+	margin: 10px 4px;
+	font-weight: 300;
+	text-align: center;
+	line-height: 25px;
+	color: #fff;
+	border-radius: 5px;
+	transition: all 0.2s;
+}
+
+.smallButtonSubmit12 {
+	display: block;
+	position: relative;
+	float: right;
+	width: 80px;
+	padding: 0;
+	margin: 10px 4px;
+	font-weight: 300;
+	text-align: center;
+	line-height: 25px;
+	color: #fff;
+	border-radius: 5px;
+	transition: all 0.2s;
 }

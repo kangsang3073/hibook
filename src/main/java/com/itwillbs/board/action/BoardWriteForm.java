@@ -26,6 +26,7 @@ public class BoardWriteForm implements Action {
 			out.println("history.back();"); 
 			out.println("</script>"); 
 			out.close(); 
+			return null;
 		}		
 		
 		request.setAttribute("boardTypeCd", boardTypeCd.getCd());

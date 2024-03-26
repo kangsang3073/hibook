@@ -7,7 +7,7 @@
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp"/>
 <!-- 헤더파일들어가는 곳 -->
-<link href="resource/css/market.css" rel="stylesheet" type="text/css">
+<link href="resource/css/marketForm.css" rel="stylesheet" type="text/css">
 <!-- 자바 들어가는 곳 -->
 <%
 MarketDTO dto = (MarketDTO) request.getAttribute("dto");
@@ -115,7 +115,7 @@ $(document).ready(function(){ // j쿼리 start
 		//기존 이미지 클릭 시 삭제 구동
 		$(".old-image").on("click", function(event) {
 			console.log("클릭");
-			$(this).remove("");
+			$(this).parent().remove();
 		});	
 		//해당 글에 대해 DB에 저장된 select option값 나타내기
 		$('#book_st').val('<%=dto.getBook_st()%>').prop("selected",true);
@@ -145,23 +145,35 @@ $(document).ready(function(){ // j쿼리 start
 		 var preImgLength = document.getElementsByClassName("preview-image").length;
 		 console.log("preimg개수 : "+preImgLength);
 		 var totalImgLength = oldImgLength + preImgLength;
+		 
 		 var titleLength = document.getElementsByName("title")[0].value.length;
 		 var contentLength = document.getElementsByName("content")[0].value.length;
+		 var priceLength = document.getElementsByName("book_price")[0].value.length;
+		 var tradeTypeLength = document.getElementsByName("trade_type")[0].value.length;
 		 //게시글 submit 전 제한 사항
+		 console.log(titleLength);
+		 if(titleLength < 2 || titleLength > 20) {
+			 alert("제목은 2글자에서 20글자 사이로 입력해주세요.");
+			 return false;
+		 }
+		 if(contentLength < 2) {
+			 alert("내용을 2글자 이상 입력해주세요.");
+			 return false;
+		 }
+		 if(priceLength < 1) {
+			 alert("가격을 입력해주세요.");
+			 return false;
+		 }
+		 if(tradeTypeLength < 1) {
+			 alert("거래종류를 선택해주세요.");
+			 return false;
+		 }
 		 if(totalImgLength < 1) {
 			 alert("최소 1개의 이미지를 올려주세요.");
 			 return false;
 		 }
 		 if(totalImgLength > <%=MarketDTO.getImgLengthMax()%>) {
 			 alert("게시글 당 이미지는 5개까지 올릴 수 있습니다.");
-			 return false;
-		 }
-		 if(titleLength < 2) {
-			 alert("제목을 2글자 이상 입력해주세요.");
-			 return false;
-		 }
-		 if(contentLength < 2) {
-			 alert("내용을 2글자 이상 입력해주세요.");
 			 return false;
 		 }
 		 //기존 이미지 및 추가 이미지 개수 변수 저장
@@ -225,143 +237,162 @@ $(document).ready(function(){ // j쿼리 start
 
 <div class="boardContainer">
 <!-- 내용 시작 -->
-	<h1>거래글 수정</h1>
-	<form name="move" action="MarketUpdatePro.ma" method="post">
-	<table>
-			<tr>
-			<td>글쓴이</td>
-			<td><input type="text" name="insert_id" value="<%=dto.getInsert_id()%>" readonly></td>
-			</tr>
-
-			<tr>
-			<td>글제목</td>
-			<td><input type="text" name="title" value="<%=dto.getTitle()%>"></td>
-			</tr>
-
-			<tr><td>글내용</td>
-			<td><textarea name="content" rows="10" cols="20"><%=dto.getContent()%></textarea></td>
-			</tr>
-
-			<tr>
-			<td>가격</td>
-			<td><input type="text" name="book_price" value="<%=dto.getBook_price()%>" onkeyup="inputNumber(this);">원</td>
-			</tr>
-
-			<!-- select box start -->
-			<tr>
-			<td><%=cdto.getCdGrpnms()[0]%></td>
-			<td><select id="<%=cdtoList0.get(0).getCdGrp()%>" name="<%=cdtoList0.get(0).getCdGrp()%>">
-						<%
-						for (int i = 0; i < cdtoList0.size(); i++) {
-						%>
-						<option value="<%=cdtoList0.get(i).getCdNm()%>"><%=cdtoList0.get(i).getCdNm()%>
-						</option>
-						<%
-						}
-						%>
-					 </select></td>
-			</tr>
+	<p class="boardTag">중고거래 게시글 수정</p>
+	
+	<div class="tableContainer">
+	
+		<form name="move" action="MarketUpdatePro.ma" method="post">
+			<table>
+						<thead>
+					  <tr>
+					  <th class="tc"></th>
+					  <th class="tc"></th>	
+					  </tr>
+					  </thead>
+					  
+						<tr>
+						<td>글제목</td>
+						<td><input type="text" class="formText" name="title" value="<%=dto.getTitle()%>" placeholder="제목을 입력하세요"></td>
+						</tr>
 			
-			<tr>
-			<td><%=cdto.getCdGrpnms()[1]%></td>
-			<td><select id="<%=cdtoList1.get(0).getCdGrp()%>" name="<%=cdtoList1.get(0).getCdGrp()%>">
-						<%
-						for (int i = 0; i < cdtoList1.size(); i++) {
-						%>
-						<option value="<%=cdtoList1.get(i).getCdNm()%>"><%=cdtoList1.get(i).getCdNm()%>
-						</option>
-						<%
-						}
-						%>
-					 </select></td>
-			</tr>
+						<tr>
+						<td>글내용</td>
+						<td><textarea name="content" class="formText" rows="10" cols="20" placeholder="내용을 입력하세요"><%=dto.getContent()%></textarea></td>
+						</tr>
+						
+						<tr>
+						<td>가격</td>
+						<td><input type="text" class="formMiniText" name="book_price" value="<%=dto.getBook_price()%>" onkeyup="inputNumber(this);" placeholder="숫자만 입력하세요"> 원</td>
+						</tr>
+						
+						<!-- select box start -->
+						<tr>
+						<td><%=cdto.getCdGrpnms()[0]%></td>
+						<td><select class="selectText" name="<%=cdtoList0.get(0).getCdGrp()%>" id="<%=cdtoList0.get(0).getCdGrp()%>">
+									<%
+									for (int i = 0; i < cdtoList0.size(); i++) {
+									%>
+									<option value="<%=cdtoList0.get(i).getCdNm()%>"><%=cdtoList0.get(i).getCdNm()%>
+									</option>
+									<%
+									}
+									%>
+								 </select></td>
+						</tr>
+						
+						<tr>
+							<td><%=cdto.getCdGrpnms()[1]%></td>
+							<td><select class="selectText" name="<%=cdtoList1.get(0).getCdGrp()%>" id="<%=cdtoList1.get(0).getCdGrp()%>">
+									<%
+									for (int i = 0; i < cdtoList1.size(); i++) {
+									%>
+									<option value="<%=cdtoList1.get(i).getCdNm()%>"><%=cdtoList1.get(i).getCdNm()%>
+									</option>
+									<%
+									}
+									%>
+								 </select></td>
+						</tr>
+						
+						<tr>
+						<td><%=cdto.getCdGrpnms()[2]%></td>
+					  <td><select class="selectText" name="<%=cdtoList2.get(0).getCdGrp()%>" id="<%=cdtoList2.get(0).getCdGrp()%>">
+									<%
+									for (int i = 0; i < cdtoList2.size(); i++) {
+									%>
+									<option value="<%=cdtoList2.get(i).getCdNm()%>"><%=cdtoList2.get(i).getCdNm()%>
+									</option>
+									<%
+									}
+									%>
+								 </select></td>
+						</tr>
+						
+						<tr>
+						<td><%=cdto.getCdGrpnms()[3]%></td>
+						<td><select class="selectText" name="<%=cdtoList3.get(0).getCdGrp()%>" id="<%=cdtoList3.get(0).getCdGrp()%>"> 
+									<%
+									for (int i = 0; i < cdtoList3.size(); i++) {
+									%>
+									<option value="<%=cdtoList3.get(i).getCdNm()%>"><%=cdtoList3.get(i).getCdNm()%>
+									</option>
+									<%
+									}
+									%>
+								 </select></td>
+						</tr>
+						
+						<tr>
+						<td><%=cdto.getCdGrpnms()[4]%></td>
+						<td><select class="selectText" name="<%=cdtoList4.get(0).getCdGrp()%>" id="<%=cdtoList4.get(0).getCdGrp()%>">
+									<%
+									for (int i = 0; i < cdtoList4.size(); i++) {
+									%>
+									<option value="<%=cdtoList4.get(i).getCdNm()%>"><%=cdtoList4.get(i).getCdNm()%>
+									</option>
+									<%
+									}
+									%>
+								 </select></td>
+						</tr>
+						<!-- select box end -->
 			
-			<tr>
-			<td><%=cdto.getCdGrpnms()[2]%></td>
-			<td><select id="<%=cdtoList2.get(0).getCdGrp()%>" name="<%=cdtoList2.get(0).getCdGrp()%>">
-						<%
-						for (int i = 0; i < cdtoList2.size(); i++) {
-						%>
-						<option value="<%=cdtoList2.get(i).getCdNm()%>"><%=cdtoList2.get(i).getCdNm()%>
-						</option>
-						<%
-						}
-						%>
-					 </select></td>
-			</tr>
-			
-			<tr>
-			<td><%=cdto.getCdGrpnms()[3]%></td>
-			<td><select id="<%=cdtoList3.get(0).getCdGrp()%>" name="<%=cdtoList3.get(0).getCdGrp()%>">
-						<%
-						for (int i = 0; i < cdtoList3.size(); i++) {
-						%>
-						<option value="<%=cdtoList3.get(i).getCdNm()%>"><%=cdtoList3.get(i).getCdNm()%>
-						</option>
-						<%
-						}
-						%>
-				   </select></td>
-			</tr>
-			
-			<tr>
-			<td><%=cdto.getCdGrpnms()[4]%></td>
-			<td><select id="<%=cdtoList4.get(0).getCdGrp()%>" name="<%=cdtoList4.get(0).getCdGrp()%>">
-						<%
-						for (int i = 0; i < cdtoList4.size(); i++) {
-						%>
-						<option value="<%=cdtoList4.get(i).getCdNm()%>"><%=cdtoList4.get(i).getCdNm()%>
-						</option>
-						<%
-						}
-						%>
-					 </select></td>
-			</tr>
-			<!-- select box end -->
-
+						<tr>
+						<td>이미지 업로드</td>
+						<td><input id="img" type="file" name="files[]" accept="image/*" multiple></td>
+						</tr>
+						
+					</table>
+		
+					<!-- 이미지 수 저장 -->
+					<input type="hidden" value="0" name="oldImgNum"> 
+					<input type="hidden" value="0" name="preImgNum"> 
+					<!-- 게시글번호 저장 -->
+					<input type="hidden" name="market_id" value="<%=dto.getMarket_id()%>">
+					<!-- 기존 이미지 배열값 저장 -->
+					<%
+					for(int i = 0; i < MarketDTO.getImgLengthMax(); i++) {
+					%>
+						<input type="hidden" value="url" name="oldImgUrls">
+					<%
+			 		}
+			 		%> 
+					<!-- 클라우디너리의 새로운 배열값 저장 -->
+					<%
+					for(int i = 0; i < MarketDTO.getImgLengthMax(); i++) {
+					%>
+						<input type="hidden" value="url" name="imgUrls">
+					<% } %>  
+		</form>
+	</div>
+	
+	<div class="imgContainer">
+		<p>저장된 이미지</p>
+		<div id="oldImgWrap">
 			<%
 			for (int i = 0; i < realUrlLength; i++) {
 			%>
-			<tr>
-			<td>첨부이미지<%=i + 1%></td>
-			<td><img class="old-image" name="old-image" src="<%=dto.getImgUrls()[i]%>" width=260px></td>
-			</tr>
+			<div class="oldview-container">
+				<div class="oldview-label">이미지<%=i + 1%></div>
+				<img class="old-image" name="old-image" src="<%=dto.getImgUrls()[i]%>" width=260px>
+			</div>
 			<%
 			}
 			%>
-			
-			<tr>
-			<td>첨부파일</td>
-			<td><input id="img" type="file" name="files[]" accept="image/*" multiple></td>
-			</tr>
-    </table>
-
-		<div id="imgWrap">
-			이미지 미리보기 <br>
 		</div>
-		<input type="button" value="게시글수정" name="sub" id="sub" onclick="checkWrite();"> 
-		<input type="button" value="게시글목록" onclick="location.href='MarketList.ma'">
+	</div>
+	
+	<div class="imgContainer">
+		<p>이미지 미리보기</p>
+		<div id="imgWrap">
+		</div>
+	</div>
+	
+	<div class="conBottom">
+		<input type="button" class="basic-btn" value="게시글수정" name="sub" id="sub" onclick="checkWrite();"> 
+		<input type="button" class="basic-btn" value="게시글목록" onclick="location.href='MarketList.ma'">
+	</div>
 		
-		<!-- 이미지 수 저장 -->
-		<input type="hidden" value="0" name="oldImgNum"><br> 
-		<input type="hidden" value="0" name="preImgNum"><br> 
-		<!-- 게시글번호 저장 -->
-		<input type="hidden" name="market_id" value="<%=dto.getMarket_id()%>">
-		<!-- 기존 이미지 배열값 저장 -->
-		<%
-		for(int i = 0; i < MarketDTO.getImgLengthMax(); i++) {
-		%>
-			<input type="hidden" value="url" name="oldImgUrls"><br> 
-		<%
- 		}
- 		%> 
-		<!-- 클라우디너리의 새로운 배열값 저장 -->
-		<%
-		for(int i = 0; i < MarketDTO.getImgLengthMax(); i++) {
-		%>
-			<input type="hidden" value="url" name="imgUrls"><br> 
-		<% } %>  
-	</form>
 <!-- 내용 끝 -->
 </div>
 

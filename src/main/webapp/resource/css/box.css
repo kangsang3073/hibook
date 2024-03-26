@@ -46,7 +46,7 @@ html,body{
 	left : 5px;
 }
 
-.a{
+.dd{
 	position : relative;
 }
 
@@ -142,6 +142,9 @@ td {
 	font-family:'notosanskr';
 	font-size : 14px;
 	position : absolute;
+	width : 300px;
+	height : 70px;
+	text-align : left;
 	
 }
 

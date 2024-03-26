@@ -33,6 +33,7 @@ public class BoardContent implements Action {
 			out.println("history.back();"); 
 			out.println("</script>"); 
 			out.close(); 
+			return null;
 		}
 		// 세션에서 "id"값을 가져오기 -> 변수저장( 다운캐스팅 이루어짐.)
 		HttpSession session = request.getSession(); // - 세션 객체생성

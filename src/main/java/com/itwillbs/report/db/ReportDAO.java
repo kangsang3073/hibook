@@ -67,7 +67,7 @@ public class ReportDAO {
 	}//insertreport() 메서드
 	
 	// 리턴할형 ArrayList<reportDTO>  getreportList(int startRow,int pageSize) 메서드 정의 
-	public ArrayList<ReportDTO> getReportList(int startRow,int pageSize){
+	public ArrayList<ReportDTO> getAdminReportList(int startRow,int pageSize){
 		System.out.println("reportDAO getreportList()");
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -84,6 +84,50 @@ public class ReportDAO {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow-1);
 			pstmt.setInt(2, pageSize);
+			//4
+			rs=pstmt.executeQuery();
+			//5
+			while(rs.next()) {
+				// 하나의 글의 바구니에 저장
+				ReportDTO dto=new ReportDTO();
+				dto.setReport_id(rs.getInt("report_id"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setContent_img1(rs.getString("content_img1"));
+				dto.setInsert_id(rs.getString("insert_id"));
+				dto.setInsert_date(rs.getTimestamp("insert_date"));
+				// 바구니의 주소값을 배열 한칸에 저장
+				ReportList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+		}
+		return ReportList;
+	}//
+	
+	public ArrayList<ReportDTO> getUserReportList(String id, int startRow,int pageSize){
+		System.out.println("reportDAO getreportList()");
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ArrayList<ReportDTO> ReportList=new ArrayList<>();
+		try {
+			// 1~2 단계
+			con=getConnection();
+			// 3단계 sql
+			// 기본 num기준 오름차순 => 최근글 위로 올라오게 정렬 (num 내림차순)
+//			String sql="select * from report order by num desc";
+//			String sql="select * from report order by num desc limit 시작행-1, 몇개";
+			String sql="select * from mem_report where insert_id = ? order by report_id desc limit ?, ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, startRow-1);
+			pstmt.setInt(3, pageSize);
 			//4
 			rs=pstmt.executeQuery();
 			//5
@@ -158,12 +202,12 @@ public class ReportDAO {
 			// 1~2 단계
 			con=getConnection();
 			// 3단계 sql
-			String sql="update mem_report set title=?, content=? ,content_img1=? where insert_id=?";
+			String sql="update mem_report set title=?, content=? ,content_img1=? where report_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, dto.getTitle());
 			pstmt.setString(2, dto.getContent());
 			pstmt.setString(3, dto.getContent_img1());
-			pstmt.setString(4, dto.getInsert_id());
+			pstmt.setInt(4, dto.getReport_id());
 			;
 			
 			// 4단계 SQL구문을 실행(insert,update,delete)
@@ -201,7 +245,7 @@ public class ReportDAO {
 	}//
 	
 	// int 리턴할형 getreportCount() 메서드 정의 
-	public int getReportCount() {
+	public int getAdminReportCount() {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -212,6 +256,35 @@ public class ReportDAO {
 			// 3단계 sql
 			String sql="select count(*) from mem_report";
 			pstmt=con.prepareStatement(sql);
+			//4
+			rs=pstmt.executeQuery();
+			//5
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
+				if(rs!=null) try { rs.close();} catch (Exception e2) {}
+				if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+				if(con!=null) try { con.close();} catch (Exception e2) {}
+		}
+		return count;
+	}//
+	
+	public int getUserReportCount(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			// 1~2 단계
+			con=getConnection();
+			// 3단계 sql
+			String sql="select count(*) from mem_report where insert_id = ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
 			//4
 			rs=pstmt.executeQuery();
 			//5

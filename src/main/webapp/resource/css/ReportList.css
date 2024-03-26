@@ -1,15 +1,13 @@
 @charset "UTF-8";
-h1{
+.T{
 text-align: center;	
 }
-h3{
-color:blue;	
-}
+
 .title{
 background-color:#A4A4A4;
 }
-table{
-margin-left:150px; 	
+.te{
+text-align: center;
 }
 
 .page{
@@ -19,10 +17,17 @@ margin-top: 30px;
 	clear: both;
 }
 
+.call{
+color:blue;
+position:fixed;
+padding: 10px;
+margin-left:100px; 
+}
 
- .Left {
+ .left {
 text-align:left;
 position:fixed;
 padding: 10px;
 cursor: pointer;
+margin-left:100px; 
 }

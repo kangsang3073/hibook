@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.report.db.ReportDTO"%>
 <%@page import="com.itwillbs.report.db.ReportDAO"%>
 
@@ -23,54 +24,57 @@
 	<!-- 헤더파일들어가는 곳 -->
 	<jsp:include page="/inc/header.jsp"/>
 	<!-- 헤더파일들어가는 곳 -->
-	<link href="resource/css/board.css" rel="stylesheet" type="text/css">
 	<link href="resource/css/ReportContent.css " rel="stylesheet" type="text/css">
+	
+		<h3 class="call">고객센터</h3>
+				<br><br>
+				<div class="left">
+					<br> <br>
+					<div>
+						<div>
+							<a href="ReportForm.re"> 신고하기 </a><br> <br> <a
+								href="ReportList.re">신고목록</a><br> <br> <a
+								href="List.re">자주하는 질문</a>
+
+						</div>
+					</div>
+				</div>
+	
 	<div class="boardContainer">
 <!-- 내용 시작 -->
 <form action="ReportWrite.re" method="post" enctype="multipart/form-data">
 
-<div class=Left>
-	<h3>고객센터</h3>
-	<br>
-		
-		<div>
-			<div>
-				<a href="ReportForm.re"> 신고하기 </a><br>
-				<br>
-				<a href="ReportList.re">신고목록</a><br>
-				<br>	
-				<a href="List.re">자주하는 질문</a>					
-		</div>
-	</div>
-	</div>
-<h1>글내용📇</h1>
-<table border="1">
-<tr><td>글번호</td><td><%=dto.getReport_id() %></td></tr>
-<tr><td>작성자</td><td><%=dto.getInsert_id() %> </td></tr>
-<tr><td>글제목</td><td><%=dto.getTitle() %></td></tr>
-<tr><td>글내용</td><td><%=dto.getContent() %></td></tr>
-<tr><td>글쓴날짜</td><td><%=dto.getInsert_date() %></td></tr>
-<tr><td>첨부파일</td><td><img src="upload/<%=dto.getContent_img1()%>" width="400"></td></tr>
 
-<tr><td colspan="2">
+<h1 class="T">글내용📇</h1>
+<table  class="te" border="1">
+<tr><td class="t">글번호</td><td><%=dto.getReport_id() %></td></tr>
+<tr><td class="t">작성자</td><td><%=dto.getInsert_id() %> </td></tr>
+<tr><td class="t">글제목</td><td><%=dto.getTitle() %></td></tr>
+<tr><td class="t">글내용</td><td><%=dto.getContent() %></td></tr>
+<tr><td class="t">글쓴날짜</td><td><%SimpleDateFormat dateformat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");%>
+         <%=dateformat.format(dto.getInsert_date()) %></td></tr>
+<tr><td class="t">첨부파일</td><td><img src="upload/<%=dto.getContent_img1()%>" width="600"></td></tr>
+</table>
+
+<div>
+<input type="button"  class="smallButtonComment" value="사기목록" onclick="location.href='ReportList.re'">
 <%
 //  로그인 => 세션값 있음 
  if(id != null){ 
  	// 세션값  , 글쓴이  => 일치 => 자기자신 쓴 글(글수정, 글삭제 보이기) -->
  	if(id.equals("admin") || id.equals(dto.getInsert_id())){
  		%>
-<input type="button" value="글수정"
- onclick="location.href='ReportUpdateForm.re?num=<%=dto.getReport_id()%>'">
- <input type="button" value="글삭제" onclick="location.href='ReportDeletePro.re?num=<%=dto.getReport_id()%>'">		
+ <input type="button" class="smallButtonComment" value="글삭제" onclick="location.href='ReportDeletePro.re?num=<%=dto.getReport_id()%>'">
+ <input type="button" class="smallButtonComment" value="글수정"
+ onclick="location.href='ReportUpdateForm.re?num=<%=dto.getReport_id()%>'">		
 		<%
 	} 
  } 
 %> 
 
 
-<input type="button" value="사기목록" onclick="location.href='ReportList.re'">
-</td></tr>
-</table>
+
+</div>
 </form>
 <!-- 내용 끝 -->	
 

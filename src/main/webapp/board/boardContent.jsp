@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
  <%
- String id = (String)session.getAttribute("id");
+ String id = session.getAttribute("id") == null ? "" : (String)session.getAttribute("id");
   	// 게시판 유형을 공통코드로 구분.
   	String boardTypeCd = (String) request.getAttribute("boardTypeCd");
   	String boardTypeCdNm = (String) request.getAttribute("boardTypeCdNm");
@@ -35,7 +35,7 @@
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp"/>
 <!-- 헤더파일들어가는 곳 -->
-<link href="/resource/css/board.css" rel="stylesheet" type="text/css">
+<link href="resource/css/board.css" rel="stylesheet" type="text/css">
 <link href="resource/css/market.css" rel="stylesheet" type="text/css">
 <div class="boardContainer">
 <!-- 내용 시작 -->
@@ -194,14 +194,14 @@ function writeCheck() {
 
 
 <div>
-<p id="boardTag"><%=boardTypeCdNm %>  💬</p>
+<p class="boardTag"><%=boardTypeCdNm %>  💬</p>
 
 
 <div class="tableBar">
 <hr class="my-hr3">
    <table class="boardView">
    		<colgroup>
-			<col width="100px;">
+			<col width="130px;">
 			<col width="*">
 			<col width="100px;">
 		</colgroup>
@@ -262,7 +262,8 @@ function writeCheck() {
  
  <table class="bCmmtContent1">
  <!-- 공지사항게시판 모든글에 댓글작성불가 -->
-    	  <%if("N".equals(dto.getNoticeyn())) {%>
+    	  <%if(!"notice".equals(dto.getBoardType())){ %>  
+    	  		<% if("N".equals(dto.getNoticeyn())) {%>
        <!-- 댓글 시작 -->	 
          <tr>
             <td>
@@ -272,14 +273,12 @@ function writeCheck() {
              <input type="button" class="smallButtonComment smallButtonBlueGray  "value="댓글등록" onclick="cmmtWrite();">
             </td>
          </tr>
- 		<%} %>
+ 		<%} }%>
          <% 
             // 댓글 반복- 배열저장.
             for (int i = 0; i < boardList.size(); i++) {
                // 배열 한칸에 내용 가져오기 
                BoardCmmtDTO cmmtDto = boardList.get(i);
-               
-               
             %> 
             
         <!-- 댓글조회  -->
@@ -287,7 +286,7 @@ function writeCheck() {
                <td> 
                		<!-- 작성자아이디, 작성일 , 댓글내용, 비밀댓글여부 -->
 <%--                 	  <%=cmmtDto.getInsertId()%> --%>
-                	<span id="idSpan"><%=dao.getNickname(dto.getBoardId()) %></span>
+                	<span id="idSpan"><%=cmmtDto.getNickname() %></span>
                 	  &nbsp;&nbsp; <%=changeTime%><br> 
                   
                   	<!-- 일반글 or 로그인아이디=댓글작성자아이디 or 로그인아이디=원글작성자아이디 or 관리자'Y' -->
@@ -309,8 +308,8 @@ function writeCheck() {
        <!-- 세션값 = 글쓴이 -> 일치 -> 자기자신 쓴 글(글수정, 글삭제 ,비밀댓글 보이기)  -->     
                   <%   
                      if (id.equals(cmmtDto.getInsertId())) {%> 
-                 		<input type="button" value="댓글수정"  class="smallButtonsubmit2 smallButtonBlueGray" onclick="cmmtEdit('<%=cmmtDto.getCmmtId() %>');" >
-                  		<input type="button" value="댓글삭제" class="smallButtonsubmit2 smallButtonBlueGray" onclick="cmmtDelete('<%=cmmtDto.getCmmtId() %>');"> 
+                 		<input type="button" value="댓글삭제" class="smallButtonSubmit12 smallButtonBlueGray" onclick="cmmtDelete('<%=cmmtDto.getCmmtId() %>');" >
+                  		<input type="button" value="댓글수정"  class="smallButtonCancle12 smallButtonBlueGray" onclick="cmmtEdit('<%=cmmtDto.getCmmtId() %>');"> 
                   		
                   <%} // if끝 %>
                </td>
@@ -320,16 +319,16 @@ function writeCheck() {
              <tr id ="edit_<%=cmmtDto.getCmmtId() %>" style="display:none">
                <td> 
                  <textarea id="content_<%=cmmtDto.getCmmtId() %>" name="content" rows="8" placeholder="댓글을 입력하세요" style="width: 80%"><%=cmmtDto.getContent()%> </textarea>
-	             <input type="checkbox" id="secretYn_<%=cmmtDto.getCmmtId() %>" name="secretYn" value="Y" <%if("Y".equals(cmmtDto.getSecretYn())){%> checked <%}%> >비밀댓글
-	             <input type="button"  value="댓글수정" onclick="cmmtUpdate('<%=cmmtDto.getCmmtId() %>');">
-	             <input type="button" value="댓글취소" onclick="cmmtCancle('<%=cmmtDto.getCmmtId() %>');">
+	             <input type="checkbox" id="secretYn_<%=cmmtDto.getCmmtId() %>" name="secretYn" value="Y" <%if("Y".equals(cmmtDto.getSecretYn())){%> checked <%}%> >비밀댓글 <br>
+	             <input type="button" class="smallButtonCancle12 smallButtonBlueGray" value="댓글취소" onclick="cmmtCancle('<%=cmmtDto.getCmmtId() %>');">
+	             <input type="button" class="smallButtonSubmit12 smallButtonBlueGray" value="댓글수정" onclick="cmmtUpdate('<%=cmmtDto.getCmmtId() %>');" >
                </td>
             </tr>
             
          <%} // 댓글for문 끝%>
       </table>
 		</div>
-	<div class="Page">
+	<div class="page">
 	<% // 댓글 페이징
 	// 10페이지 이전
 		if (startPage > pageBlock) {

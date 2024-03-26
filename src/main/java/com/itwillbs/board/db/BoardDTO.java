@@ -27,6 +27,10 @@ public class BoardDTO {
 	// private String insertDate;
 	// private Date insertDate;
 
+	
+	// 게시판목록에 댓글개수 나오게
+	private int cmmtCount;
+	
 	public int getBoardId() {
 		return boardId;
 	}
@@ -145,6 +149,14 @@ public class BoardDTO {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public int getCmmtCount() {
+		return cmmtCount;
+	}
+
+	public void setCmmtCount(int cmmtCount) {
+		this.cmmtCount = cmmtCount;
 	}
 	
 }

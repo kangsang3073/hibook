@@ -27,6 +27,7 @@ public class BoardUpdateForm implements Action {
 			out.println("history.back();"); 
 			out.println("</script>"); 
 			out.close(); 
+			return null;
 		}		
 		
 		String boardId = request.getParameter("boardId");

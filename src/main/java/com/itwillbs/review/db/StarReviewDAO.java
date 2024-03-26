@@ -10,8 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import mypage.member.MemberDTO;
-public class StarReviewDAO{
+public class StarReviewDAO extends MemberDAO{
 
 		public Connection getConnection() throws Exception{
 			Context init=new InitialContext();
@@ -34,7 +33,7 @@ public class StarReviewDAO{
 				// 1~2 단계
 				con=getConnection();
 				// 3단계 SQL구문 만들어서 실행할 준비(insert)
-				String sql="select m.nickname, t.tgt_id, avg(score) from manner t join members m on t.tgt_id = m.mem_id where t.tgt_id=?";
+				String sql="select m.nickname, m.mem_img,t.tgt_id, avg(score) from manner t join members m on t.tgt_id = m.mem_id where t.tgt_id=?";
 				pstmt=con.prepareStatement(sql);
 				System.out.println(pstmt);
 				System.out.println(tgt_id);
@@ -53,6 +52,7 @@ public class StarReviewDAO{
 					dto.setNickname(rs.getString("nickname"));
 					dto.setTgt_id(rs.getString("tgt_id"));
 					dto.setScore(rs.getDouble("avg(score)"));
+					dto.setMemImg(rs.getString("mem_img"));
 				}
 			}
 			 catch (Exception e) {
@@ -81,7 +81,8 @@ public class StarReviewDAO{
 				// 기본 num기준 오름차순 => 최근글 위로 올라오게 정렬 (num 내림차순)
 //				String sql="select * from board order by num desc";
 //				String sql="select * from board order by num desc limit 시작행-1, 몇개";
-				String sql="select * from manner where tgt_id=? order by review_date desc limit ?, ?";
+				//String sql="select * from manner where tgt_id=? order by review_date desc limit ?, ?";
+				String sql="select m2.nickname, m1.score, m1.insert_id, m1.review_content, m1.review_date, m1.tgt_id from manner m1 join members m2 on m2.mem_id = m1.insert_id where tgt_id=? order by review_date desc limit ?, ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, tgt_id);
 				pstmt.setInt(2, startRow-1);
@@ -97,6 +98,7 @@ public class StarReviewDAO{
 					dto.setReview_content(rs.getString("review_content"));
 					dto.setReview_date(rs.getTimestamp("review_date"));
 					dto.setTgt_id(rs.getString("tgt_id"));
+					dto.setNickname(rs.getString("nickname"));
 					// 바구니의 주소값을 배열 한칸에 저장
 					reviewList.add(dto);
 					System.out.println(dto);
@@ -190,7 +192,7 @@ public class StarReviewDAO{
 				con = getConnection();
 				
 				//3단계 SQL구문 만들어서 실행할 준비 (select where id=?)
-				String sql = "select * from members where mem_id=?";
+				String sql = "select mem_id,nickname,mem_img from members where mem_id=?";
 				pstmt = con.prepareStatement(sql);
 				//? 채워넣기
 					pstmt.setString(1, id); 
@@ -203,8 +205,49 @@ public class StarReviewDAO{
 				// id, pass 일치하면 MemberDTO 바구니에 데이터 담아서 가져오기 
 				//	바구니 객체생성 dto => 기억장소 할당 
 					dto = new StarReviewDTO();
-					dto.setMem_img(rs.getString("mem_img"));
+					dto.setMemId(rs.getString("mem_id"));
+					dto.setMemImg(rs.getString("mem_img"));
 					dto.setNickname(rs.getString("nickname"));
+					System.out.println(id);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+				if(con!=null) try { con.close();} catch (Exception e2) {}
+				if(rs!=null) try { rs.close();} catch (Exception e2) {}
+			}
+			return dto;		
+		}
+		
+		public StarReviewDTO getMemberImg2(String tgt_id) {
+			// 바구니 주소가 저장되는 변수에 null 초기화
+			StarReviewDTO dto = null;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				// 1,2단계 디비연결 메서드 호출 
+				con = getConnection();
+				
+				//3단계 SQL구문 만들어서 실행할 준비 (select where id=?)
+				String sql = "select mem_id,nickname,mem_img from members where mem_id=?";
+				pstmt = con.prepareStatement(sql);
+				//? 채워넣기
+					pstmt.setString(1, tgt_id); 
+
+				//4단계 SQL구문을 실행(select) => 결과 저장 
+				rs = pstmt.executeQuery();
+
+				//5단계 결과를 출력, 데이터 담기 (select)
+				if(rs.next()) {
+				// id, pass 일치하면 MemberDTO 바구니에 데이터 담아서 가져오기 
+				//	바구니 객체생성 dto => 기억장소 할당 
+					dto = new StarReviewDTO();
+					dto.setMemId(rs.getString("mem_id"));
+					dto.setMemImg(rs.getString("mem_img"));
+					dto.setNickname(rs.getString("nickname"));
+					System.out.println(tgt_id);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

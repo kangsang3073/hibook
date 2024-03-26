@@ -22,21 +22,37 @@
  		if (mem_id == null){
  			session.setAttribute("messageType", "오류 메시지");
  			session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
-//  			response.sendRedirect("index.jsp");
- 			return;
+			%>
+			<script type="text/javascript">
+			alert("현재 로그인이 되어 있지 않습니다.");
+			window.close();
+			</script>
+			<% 
+			return;
  		}
  		if (to_id == null) {
  			session.setAttribute("messageType", "오류 메시지");
  			session.setAttribute("messageContent", "대화 상대가 지정되지 않았습니다.");
-//  			response.sendRedirect("index.jsp");
+						%>
+			<script type="text/javascript">
+			alert("대화 상대가 지정되지 않았습니다.");
+			window.close();
+			</script>
+ 			<% 
  			return;
  		}
  		if(mem_id.equals(URLDecoder.decode(to_id,"UTF-8"))){
  			session.setAttribute("messageType", "오류 메시지");
  			session.setAttribute("messageContent", "자기 자신에게는 쪽지를 보낼 수 없습니다.");
-//  			response.sendRedirect("index.jsp");
+			%>
+			<script type="text/javascript">
+			alert("자기 자신에게는 채팅을 보낼 수 없습니다.");
+			window.close();
+			</script>
+ 			<% 
  			return;
  		}
+ 		
  		
  		String fromProfile = new MemberDAO().getProfile(mem_id);
  		String toProfile = new MemberDAO().getProfile(to_id);
@@ -45,12 +61,14 @@
 	%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
-<link rel="stylesheet" href="../resource/css/chat.css">
+<link rel="stylesheet" href="resource/css/chat.css">
 <title>채팅</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  
 <script type="text/javascript">
 	function chatbox(){
-			window.open("ChatList.hi", "vv", "width=500, height=700"); 
+// 			window.open("ChatList.hi", "vv", "width=500, height=700"); 
+		var link = "<%=request.getContextPath()%>/ChatList.hi";
+		location.replace(link);
 	}
 	function autoClosingAlert(selector, delay){
 		var alert = $(selector).alert();
@@ -186,15 +204,15 @@
 <!-- ==========================================================채팅창 디자인 -->
 	<div class="container">
 		<div class="chatlogo">
-				<span class="logoimg"><img src="../resource/image/hibookchat.PNG"></span><!--로고나 해당 웹사이트 제목을 넣어줄 수 있는 부분-->
+				<span class="logoimg"><img src="resource/image/hibookchat.PNG"></span><!--로고나 해당 웹사이트 제목을 넣어줄 수 있는 부분-->
 				<span class="yourid"><%= nickname %> 님 와의 대화</span>
-				<span class="gobox"><img src="../resource/image/bookmark.png" onclick="chatbox();"></span>
+				<span class="gobox"><img src="resource/image/bookmark.png" onclick="chatbox();"></span>
 		</div>
-		<div id="chatList"  style="overflow-y: auto; width: 100%; height : 520px;">
+		<div id="chatList"  style="overflow-y: auto; width: 100%; height : 500px;">
 		</div>
 				<div class="submitarea">
-					<textarea id="chat_content" style="height: 80px;" class="chatarea" placeholder=" 메시지를 입력하세요." maxlength="100"  onkeyup="onKeyUp()"></textarea>
-					<img src="../resource/image/quill-pen.png" onclick="submitFunction();">
+					<textarea id="chat_content" style="height: 80px;" class="chatarea" placeholder=" 메시지를 입력하세요." maxlength="100"  onkeyup="onKeyUp()" onfocus="this.placeholder = ''"></textarea>
+					<img src="resource/image/quill-pen.png" onclick="submitFunction();">
 <!-- 					<input class="chatsubmitbutton" type="button" onclick="submitFunction();" value="전송"> -->
 				</div>
 	</div>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 public class BoardFrontController extends HttpServlet {
 	// alt shift s-> v : 메서드 재정의
 	// 자동으로 doGet() doPost() 호출
@@ -100,7 +101,14 @@ public class BoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(spath.equals("/Introduce.bo")) {
+			forward=new ActionForward();
+			forward.setPath("board/introduce.jsp");
+			forward.setRedirect(false); 
 		}
+		
+		
+		
 		// 이동
 		if(forward != null) {
 			

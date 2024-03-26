@@ -1,0 +1,435 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Happiness-Sans-Title';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #fff;
+  font-family: 'Happiness-Sans-Title'; 
+  overflow-y: scroll;
+}
+
+
+div {
+	word-break : break-all;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.board {
+	font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.boardTag {
+	font-family: 'Happiness-Sans-Title'; 
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+.boardTag2 {
+	font-family: 'Happiness-Sans-Title'; 
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 30px;
+	color: #666666;
+}
+
+.book_title > p {
+	line-height: 1.5;
+}
+
+.trade_type {
+	border: 1px solid #666666;
+	border-radius: 5px;
+	padding: 1.5px;
+	background-color: #212529;
+	color: #fff;
+}
+
+.book_price {
+	font-weight: bolder;
+	font-size: 18px;
+}
+
+.view_cnt {
+	font-size: 14px;
+	color: #666666;
+}
+
+.topBar {
+	width : 900px;
+	height : 30px;
+	background-color: #fff;
+	display : flex;
+	justify-content: flex-end;
+	margin : 0 auto;
+}
+
+.topBar > div {
+	font-size : 12px;
+	color : #8C8C8C;
+	margin : 5px 0px;
+	padding : 0px 30px;
+}
+
+#login:hover {
+	background-color: #212529;
+	color: #fff;
+}
+
+.top {
+	width : 900px;
+	height : 100px;
+	margin : 0 auto;
+	display : flex;
+	justify-content: space-between;
+	align-items : center;
+	background-color: #fff;
+}
+
+.top > div {
+	height : 70px;
+	text-align : center;
+}
+
+.rogo {
+	cursor : pointer;
+	width : 150px;
+	background-color: #FBF7FF;
+	position : relative;
+}
+
+#login, #mypageMenu {
+	cursor : pointer;
+	z-index: 2;
+}
+
+.search {
+  position : relative;
+  width : 300px;
+  top: 50%;
+  transform: translate(0%, -50%);
+}
+
+.search input {
+  width: 90%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.search img {
+  position : absolute;
+  width: 17px;
+  top: 10px;
+  right : 15px;
+  margin: 0;
+}
+
+.mypage {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width : 150px;
+}
+
+#mypageMenu {
+	width: 100%;
+	padding : 2px 0px;
+}
+
+#mypageMenu:hover {
+	background-color: #212529;
+	color: #fff;
+}
+
+.chatMenu {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.bannerBack {
+	height : 200px;
+	background-color: #212529;
+	padding : 30px 0px;
+}
+
+.banner {
+	height : 102px;
+	margin-right: auto;
+    margin-left: auto;
+}
+
+.bannerText {
+	text-align: center;
+}
+
+.bannerText #mainText {
+	text-align: center;
+	color : #fff;
+	display : black;
+  font-size: 3em;
+  font-weight : bolder;
+  margin-bottom: 5px;
+}
+
+.bannerText #subText {
+	color : rgba(255, 255, 255, 0.5);
+  display: block;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.navWrap {
+	width: 100%;
+	background-color: #F5F5F5;
+}
+
+.navBar {
+	position: relative;
+	width : 900px;
+	margin : 0px auto;
+	padding : 5px 0px;
+}
+
+.navContanier {
+	display: flex;
+	align-items: center;
+	height : 100%;
+}
+
+.navContanier ul {
+	display : flex;
+	width: 100%;
+	justify-content: space-between;
+	padding-left: 0px;
+	margin: 0;
+}
+
+.navContanier li {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width : 120px;
+	list-style: none;
+	text-align: center;
+	font-size: 17px;
+	font-weight: bolder;
+}
+
+.ul-main {
+	height: 50px;
+	align-items: center;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.ul-drop-main {
+	align-items: flex-start;
+}
+
+.li-main {
+	color: #212529;
+	height: 40px;
+}
+
+.li-drop {
+	color : #666666;
+	justify-content: flex-start !important;
+	gap: 10px;
+}
+
+.li-drop:hover {
+	border: none !important;
+}
+
+.drop-btn {
+	cursor: pointer;
+}
+
+.drop-btn:hover {
+	color: #c595ea;
+}
+
+.dropdown-wrap {
+	visibility: hidden;
+	position: absolute;
+	width: 100%;
+	max-height: 0;
+	background-color: #F5F5F5;
+	border-top: 1px solid #E1E1E1;
+	opacity: 0;
+	transition: all .3s ease;
+	z-index: 9999;
+}
+
+.dropdown-content-wrap {
+  z-index: 1;
+  width: 900px;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.navWrap:hover .dropdown-wrap {
+	visibility: visible;
+	max-height: 240px;
+	opacity: 1;
+}
+
+.boardContainer {
+  width : 900px;
+  margin : 0 auto;
+  padding-top : 50px;
+  padding-bottom : 80px;
+  background-color: #fff;
+}
+
+.baord2 {
+	margin-bottom: 30px;
+}
+
+.cardContainer {
+	display : flex;
+	flex-direction: row;
+	flex-wrap : wrap;
+	padding-top: 15px;
+}
+
+.card {
+	flex : 0 0 auto;
+	width : 25%;
+	height : 300px;
+	box-sizing: border-box;
+}
+
+.innerCard {
+	margin : auto;
+	width : 190px;
+	height : 285px;
+	display: flex;
+	flex-direction: column;
+	cursor : pointer;
+}
+
+.innerTop {
+	width : 100%;
+	height : 50%;
+	overflow: hidden;
+}
+
+.innerTop img {
+	width : 100%;
+	height : 100%;
+	object-fit : cover;
+	border-radius: 10px;
+}
+
+.innerBottom {
+	width : 100%;
+	height : 50%;
+}
+
+.cardText {
+	width : 100%;
+	height : 90%;
+	margin : auto;
+	line-height: 1;
+	text-align: left;
+}
+
+.tableBar {
+  color: #666;
+  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th, td {
+  padding: 6px 15px;
+}
+
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
+}
+
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+.bottomBar {
+	background-color: #F5F5F5;
+	height : 180px;
+	padding : 30px 0px;
+}
+
+.bottom {
+	width : 900px;
+	height : 100%;
+	margin : 0px auto;
+	position: relative;
+}
+
+.bottom > .text {
+	margin-left : 20px;
+	display : block;
+	line-height: 2;
+	font-size: 12px;
+	position: absolute;
+ 	top: 50%;
+	transform: translate(0, -50%);
+}
+
+.bottom ul {
+	padding-left : 0px;
+	list-style : none;
+	display : flex; 
+	flex-wrap : wrap;
+	justify-content: flex-start;
+	gap : 0px 15px;
+}

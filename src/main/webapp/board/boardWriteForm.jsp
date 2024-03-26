@@ -18,7 +18,7 @@ String parentId = request.getParameter("parentId")==null ? "0" : request.getPara
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp"/>
 <!-- 헤더파일들어가는 곳 -->
-<link href="/resource/css/board.css" rel="stylesheet" type="text/css">
+<link href="resource/css/board.css" rel="stylesheet" type="text/css">
 <div class="boardContainer">
 <!-- 내용 시작 -->
 <script type="text/javascript">
@@ -44,7 +44,7 @@ function writeCheck() {
 </script>
 
 <div>
-<p id="boardTag"><%=boardTypeCdNm %> 💬</p>
+<p class="boardTag"><%=boardTypeCdNm %> 💬</p>
 
 <div class="tableBar boardView th:first-child">
 <hr class="my-hr3">

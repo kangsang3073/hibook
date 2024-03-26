@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.market.db.MarketDAO;
 import com.itwillbs.market.db.MarketDTO;
@@ -44,11 +45,16 @@ public class MarketWritePro implements Action{
 		
 		MarketDAO dao = new MarketDAO();
 		dao.insertBoard(dto);
-
-
+		
+		System.out.println("글작성 -> 상세정보");
+		
+		dto = dao.getBoard(dao.getMarketId(insert_id));
+			
+		request.setAttribute("dto", dto);
+			
 		ActionForward forward = new ActionForward();
-		forward.setPath("MarketList.ma");
-		forward.setRedirect(true);
+		forward.setPath("market/MarketContent.jsp");
+		forward.setRedirect(false);
 		
 		return forward;
 	}

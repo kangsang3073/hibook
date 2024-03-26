@@ -123,6 +123,7 @@ public class MemberDAO {
 				dto.setMemNm(rs.getString("mem_nm"));
 				dto.setAdminYn(rs.getString("admin_yn"));
 				dto.setJoinDate(rs.getTimestamp("join_date"));
+				dto.setMemSt(rs.getString("mem_st"));
 			}else{
 				//next() 다음행 =>       데이터 없으면 false => 아이디 비밀번호 틀림
 			    // 	           => script   "아이디 비밀번호 틀림" 뒤로이동
@@ -139,7 +140,7 @@ public class MemberDAO {
 		return dto;
 	}//userCheck()
 	
-	// MemberDTO 리턴할형 getMember(String id) 메서드 정의
+//	 MemberDTO 리턴할형 getMember(String id) 메서드 정의
 	public MemberDTO getMember(String id) {
 		MemberDTO dto=null;
 		Connection con =null;
@@ -148,13 +149,8 @@ public class MemberDAO {
 		try {
 			//1,2 디비연결 메서드
 			con=getConnection();
-			
 			//3단계 SQL구문 만들어서 실행할 준비(select 조건 where id=?)
-			String sql = "select mem_id,mem_pass,mem_nm,join_date,"
-					+ 	"(select cd_nm from com_code where cd_grp = 'mem_st' and cd = m.mem_st) AS mem_st "
-					+ 	" from members m"
-					+ 	" where mem_id = ?";
-				   
+			String sql = "select * from members where mem_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 
@@ -170,9 +166,7 @@ public class MemberDAO {
 				// set메서드호출 바구니에 디비에서 가져온 값 저장
 				dto.setMemId(rs.getString("mem_id"));
 				dto.setMemPass(rs.getString("mem_pass"));
-				dto.setMemNm(rs.getString("mem_nm"));
-				dto.setJoinDate(rs.getTimestamp("join_date"));
-				dto.setMemType(rs.getString("mem_st"));
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -184,6 +178,46 @@ public class MemberDAO {
 		}
 		return dto;
 	}//getMember()
+	
+	
+	public MemberDTO nicknameCheck(String nickname) {
+		MemberDTO dto=null;
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			//1,2 디비연결 메서드
+			con=getConnection();
+			//3단계 SQL구문 만들어서 실행할 준비(select 조건 where id=?)
+			String sql = "select * from members where nickname=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, nickname);
+
+			//4단계 SQL구문을 실행(select) => 결과 저장
+			rs=pstmt.executeQuery();
+			//5단계 결과를 출력, 데이터 담기 (select)
+			// next() 다음행 => 리턴값 데이터 있으면 true/ 데이터 없으면 false
+			//조건이 true 실행문=> 다음행 데이터 있으면 true =>  열접근 출력
+			if(rs.next()){
+				//next() 다음행 => 리턴값 데이터 있으면 true/ 아이디 일치
+				// 바구니 객체생성 => 기억장소 할당
+				dto=new MemberDTO();
+				// set메서드호출 바구니에 디비에서 가져온 값 저장
+				dto.setMemId(rs.getString("mem_id"));
+				dto.setMemPass(rs.getString("mem_pass"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			// 예외 상관없이 마무리작업 => 객체생성한 기억장소 해제
+			if(rs!=null) try { rs.close();} catch (Exception e2) {}
+			if(pstmt!=null) try { pstmt.close();} catch (Exception e2) {}
+			if(con!=null) try { con.close();} catch (Exception e2) {}
+		}
+		return dto;
+	}
+	
 	
 	// ------------------------------------------------
 	// 채팅 method
@@ -199,10 +233,14 @@ public class MemberDAO {
 			pstmt.setString(1, mem_id);
 			rs = pstmt.executeQuery();
 			if ( rs.next()) {
-				if(rs.getString("mem_img").equals("url")||rs.getString("mem_img")== null) {
-					return "http://localhost:8080/resource/image/hibookprofile.png";
-				}
-				return "/upload/" + rs.getString("mem_img");
+				 if(rs.getString("mem_img")!= null && !rs.getString("mem_img").equals("")  && !rs.getString("mem_img").equals("null")) {
+  //				if(rs.getString("mem_img").equals("")||rs.getString("mem_img")== null) {
+					 	return "http://itwillbs7.cafe24.com/teamProject/upload/" + rs.getString("mem_img");
+	//					return "http://itwillbs7.cafe24.com/teamProject/resource/image/hibookprofile.png";
+				 } else{
+		                return "http://itwillbs7.cafe24.com/teamProject/resource/image/hibookprofile.png";
+		            }
+//				return "/teamProject/upload/" + rs.getString("mem_img");
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -215,7 +253,8 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
-		return "http://localhost:8080/resource/image/hibookprofile.png";
+		return "/teamProject/resource/image/hibookprofile.png";
+//		return "http://localhost:8080/resource/image/hibookprofile.png";
 	}//getProfile
 	
 	

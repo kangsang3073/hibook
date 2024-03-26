@@ -32,6 +32,7 @@ public class BoardList implements Action{
 			out.println("history.back();"); 
 			out.println("</script>"); 
 			out.close(); 
+			return null;
 		}
 		// 디비 데이터 가져오기
 		BoardDAO dao = new BoardDAO();

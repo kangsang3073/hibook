@@ -5,36 +5,63 @@
     font-weight: normal;
     font-style: normal;
     
-    /*  은숙 @font-face 변경  */
 }
 
-body {
+.h2{
+	text-align: center; 
+}
+
+.boardConatainer {
+	padding : 30px 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	
-/*   	margin: 0; */
-/*     padding: 0; */
-/*     box-sizing: border-box; */
-/*   background-color: #fff; */
-/*   font-family: 'Happiness-Sans-Title';  */
-/*  은숙 font-family 변경  */
+}
+
+.loginContainer{
+    width: 320px;
+    background-color: #EEEFF1;
+    margin: 100px auto;
+    padding: 30px;
+    text-align: center;
+    border: none;
+}
+
+.text-field{
+	font-size: 14px;
+      padding: 10px;
+      border: none;
+      width: 250px;
+      margin-bottom: 10px;
+}
+
+.submit-btn {
+  font-size: 14px;
+  border: none;
+  padding: 10px;
+  width: 270px;
+  background-color: #B4B4DC;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.insertTable{
+	
+	border-spacing: 10px;
 }
 
 
 
-buttonBlueGray {
-  background: #42444e;
-}
-
-button {
-  display: block;
-  position: relative;
-  float: right;
-  width: 100px;
-  padding: 0;
-  margin: 10px 20px 10px 0;
-  font-weight: 600;
-  text-align: center;
-  line-height: 35px;
-  color: #fff;
-  border-radius: 5px;
-  transition: all 0.2s;
+.button{
+	width: 100px;
+ 	padding: 0;
+ 	margin: 10px 20px 10px 0;
+ 	font-weight: 600;
+ 	text-align: center;
+ 	line-height: 35px;
+ 	color: #fff;
+  	border-radius: 5px;
+ 	transition: all 0.2s;		
+ 	background: #42444e;
 }

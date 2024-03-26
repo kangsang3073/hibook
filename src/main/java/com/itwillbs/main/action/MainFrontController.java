@@ -37,7 +37,7 @@ public class MainFrontController extends HttpServlet {
 		String spath = request.getServletPath();
 
 		// 가상주소 비교
-		// Action action = null;
+		Action action = null;
 		ActionForward forward = null;
 		
 		MainPro mainPro = new MainPro();

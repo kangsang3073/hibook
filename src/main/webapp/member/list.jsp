@@ -37,7 +37,7 @@
 }
 %>
 	</table>
-	<a href="MemberMain.me">메인으로</a>
+	<a href="main.do">메인으로</a>
 	<br>
 <!-- 푸터파일들어가는 곳 -->
 <jsp:include page="/inc/footer.jsp"/>

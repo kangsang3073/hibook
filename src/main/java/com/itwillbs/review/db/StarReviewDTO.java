@@ -2,7 +2,7 @@ package com.itwillbs.review.db;
 
 import java.sql.Timestamp;
 
-public class StarReviewDTO{
+public class StarReviewDTO extends MemberDTO{
 	private int manner_num;
 	private String tgt_id;
 	private double score;
@@ -10,8 +10,8 @@ public class StarReviewDTO{
 	private String review_content;
 	private Timestamp review_date;
 	private int count;
-	private String nickname;
-	private String mem_img;
+//	private String nickname;
+//	private String mem_img;
 	
 	public int getManner_num() {
 		return manner_num;
@@ -55,16 +55,16 @@ public class StarReviewDTO{
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	public String getMem_img() {
-		return mem_img;
-	}
-	public void setMem_img(String mem_img) {
-		this.mem_img = mem_img;
-	}
+//	public String getNickname() {
+//		return nickname;
+//	}
+//	public void setNickname(String nickname) {
+//		this.nickname = nickname;
+//	}
+//	public String getMem_img() {
+//		return mem_img;
+//	}
+//	public void setMem_img(String mem_img) {
+//		this.mem_img = mem_img;
+//	}
 }

@@ -24,16 +24,27 @@ public class MemberLoginPro implements Action{
 		ActionForward forward = null;
 		
 		if(dto !=null){	
-			HttpSession session=request.getSession();
-			session.setAttribute("id", id);
-			
+			if(dto.getMemSt().equals("정지") || dto.getMemSt().equals("탈퇴")){
+				response.setContentType("text/html; charset=UTF-8"); // 자바에서 html(자바스크립트) 동작 코드 생성
+				PrintWriter out = response.getWriter();
+				out.println("<script type='text/javascript'>"); // PrintWrite 자바 출력클래스, response(HttServlet 클래스 내장객체)
+				out.println("alert('로그인할 수 없는 회원입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				out.close();
+				
+			} else {
+				HttpSession session=request.getSession();
+				session.setAttribute("id", id);
+				
 
-			// 관리자만 공지사항 쓸 수있음 
-			session.setAttribute("adminYn", dto.getAdminYn());
-			
-			forward = new ActionForward();
-			forward.setPath("main.do");
-			forward.setRedirect(true);
+				// 관리자만 공지사항 쓸 수있음 
+				session.setAttribute("adminYn", dto.getAdminYn());
+				
+				forward = new ActionForward();
+				forward.setPath("main.do");
+				forward.setRedirect(true);
+			}
 			
 		}
 		else{
@@ -46,7 +57,7 @@ public class MemberLoginPro implements Action{
 			response.setContentType("text/html; charset=UTF-8"); // 자바에서 html(자바스크립트) 동작 코드 생성
 			PrintWriter out = response.getWriter();
 			out.println("<script type='text/javascript'>"); // PrintWrite 자바 출력클래스, response(HttServlet 클래스 내장객체)
-			out.println("alert('아이디 비밀번호 틀림');");
+			out.println("alert('아이디 비밀번호가 틀립니다');");
 			out.println("history.back();");
 			out.println("</script>");
 			out.close();

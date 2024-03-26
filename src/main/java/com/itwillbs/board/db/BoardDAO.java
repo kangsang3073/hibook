@@ -99,15 +99,16 @@ public class BoardDAO {
 			// 3단계 sql - 기본 : num 기준 오름차순 → 수정 : 최근글 위로 올라오게 정렬
 //			String select = "select * from board order by num desc limit 시작행-1, 몇개";
 
-			String sql = "select * ";
-			sql += "from board ";
-			sql += "where notice_yn='N' "; // 공지사항이 아니고
-			sql += "and board_type=? "; // 게시판 유형이 넘겨주는 값(board_type)이고
-			if (boardDTO.getKeyword() != null && !"".equals(boardDTO.getKeyword())) { // keword가 null이 아니고 공백이 아니면
-				sql += "and title like ? "; // 제목에 키워드가 포함된 값을 셀렉트
-			}
-			sql += "order by ref desc, board_id asc limit ?,?"; // 글그룹으로 내림차순, 게시글아이디로 오름차순 , 시작행-1~몇개 들고옴
-
+			String sql = "select c.* ,";
+				   sql += "(select count(*) from board_cmmt where board_id=c.board_id) as cmmt_count "; // 댓글개수 게시판목록띄우기 
+				   sql += "from board as c ";
+				   sql += "where notice_yn='N' "; // 공지사항이 아니고
+				   sql += "and board_type=? "; // 게시판 유형이 넘겨주는 값(board_type)이고
+				   if (boardDTO.getKeyword() != null && !"".equals(boardDTO.getKeyword())) { // keword가 null이 아니고 공백이 아니면
+					   sql += "and title like ? "; // 제목에 키워드가 포함된 값을 셀렉트
+				   	}
+				   sql += "order by ref desc, board_id asc limit ?,?"; // 글그룹으로 내림차순, 게시글아이디로 오름차순 , 시작행-1~몇개 들고옴
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, boardDTO.getBoardType());
 			if (boardDTO.getKeyword() != null && !"".equals(boardDTO.getKeyword())) {
@@ -140,6 +141,8 @@ public class BoardDAO {
 				dto.setRef(rs.getInt("ref"));
 				dto.setInsertId(rs.getString("insert_id"));
 				dto.setInsertDate(rs.getTimestamp("insert_date"));
+				dto.setCmmtCount(rs.getInt("cmmt_count"));
+				
 				// 바구니의 주소값을 배열 한칸에 저장
 				boardList.add(dto);
 			}

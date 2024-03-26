@@ -12,6 +12,7 @@ body {
   padding: 0px;
   background-color: #fff;
   font-family: 'Happiness-Sans-Title'; 
+  overflow-y: scroll;
 }
 
 div {
@@ -21,6 +22,53 @@ div {
 a {
 	text-decoration: none;
 	color: inherit;
+}
+
+.board {
+	font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.boardTag {
+	font-family: 'Happiness-Sans-Title'; 
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+.boardTag2 {
+	font-family: 'Happiness-Sans-Title'; 
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 30px;
+	color: #666666;
+}
+
+.book_title > p {
+	line-height: 1.5;
+	overflow: hidden;  		
+  text-overflow: ellipsis;  	
+  white-space: nowrap; 		
+  word-break:break-all;
+}
+
+.trade_type {
+	border: 1px solid #666666;
+	border-radius: 5px;
+	padding: 1.5px;
+	background-color: #212529;
+	color: #fff;
+}
+
+.book_price {
+	font-weight: bolder;
+	font-size: 18px;
+}
+
+.view_cnt {
+	font-size: 13px;
+	color: #666666;
 }
 
 .topBar {
@@ -253,13 +301,13 @@ a {
 .boardContainer {
   width : 900px;
   margin : 0 auto;
-  padding : 30px 0px;
+  padding-top : 50px;
+  padding-bottom : 80px;
   background-color: #fff;
 }
 
-.boardContainer > div {
-	margin : 10px;
-	padding : 10px;
+.baord2 {
+	margin-bottom: 30px;
 }
 
 .cardContainer {
@@ -309,16 +357,6 @@ a {
 	margin : auto;
 	line-height: 1;
 	text-align: left;
-}
-
-.board1 > #boardTag {
-	margin-bottom: 0px;
-
-}
-
-#boardTag {
-	font-size: 25px;
-	font-weight: bold;
 }
 
 .tableBar {

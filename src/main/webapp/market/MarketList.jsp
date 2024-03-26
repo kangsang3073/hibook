@@ -19,10 +19,11 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 <!-- 헤더파일들어가는 곳 -->
 <jsp:include page="/inc/header.jsp" />
 <!-- 헤더파일들어가는 곳 -->
-<link href="resource/css/market.css" rel="stylesheet" type="text/css">
+<link href="resource/css/marketList.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 들어가는 곳 -->
-<script type="text/javascript"></script>
+<script type="text/javascript">
+</script>
 
 <div class="boardContainer">
 <!-- 내용 시작 -->
@@ -30,8 +31,19 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 	<div class="MarketContainer">
 	
 		<div class="board1">
-			<p id="boardTag">중고책 <%=trade_type %> 게시판📚</p>
-			<p>새로운 책들을 확인해보세요!</p>
+			<div class="boardText">
+				<p class="boardTag">중고책 
+				<%if(trade_type.equals("")) { %>
+				종합<% } else { %>
+				<%=trade_type %><% }%> 게시판📚</p>
+			</div>
+			
+			<div class="boardArr">
+				<div class="boardList" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Latest'">최신순</div> 
+				<div class="boardList" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=View'">조회순</div> 
+				<div class="boardList" onclick="location.href='MarketSortList.ma?trade_type=<%=trade_type%>&arr=Att'">인기순</div>
+			</div>
+			
 		 	<div class="cardContainer">
 		 	
 		 	<%for(int i = 0; i < dtolist.size(); i++) {
@@ -45,9 +57,11 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 						</div>
 						<div class="innerBottom">
 							<div class="cardText">
-								<p id="book_price"><%=dto.getBook_price() %> 원</p>
-								<p id="title"><span id=""><%=dto.getTrade_type() %></span> &#5; <%=dto.getTitle() %></p>
-								<p id="insert_date"><%=changeTime %></p>
+								<p class="book_price"><%=dto.getBook_price() %> 원</p>
+								<div class="book_title">
+								<p><span class="trade_type"><%=dto.getTrade_type() %></span>&nbsp;&nbsp;<%=dto.getTitle() %></p>
+								</div>
+								<p class="insert_date"><%=changeTime %>&nbsp;&nbsp;<span class="view_cnt">조회수 <%=dto.getView_cnt() %> </span></p>
 							</div>
 						</div>
 					</div>
@@ -55,11 +69,12 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 			<% }%>
 			
 			</div>
+			
 		</div>
 		
 		<div class="board2">
 			<input type="button" value="메인으로" onclick="location.href='main.do'">
-			<input type="button" value="거래글 쓰기" onclick="location.href='MarketWriteForm.ma'">
+			<input type="button" value="거래글 쓰기" onclick="location.href='MarketWriteForm.ma?trade_type=<%=trade_type%>'">
 		</div>
 		
 		<div class="board3">
@@ -70,7 +85,7 @@ int pageCount = (Integer)request.getAttribute("pageCount");
 			}
 			for(int i = startPage; i <= endPage; i++) {	
 			%>
-				<a href="MarketList.ma?pageNum=<%= i%>"><%= i%> </a> 
+				<a href="MarketList.ma?pageNum=<%= i%>"><span class="mpageNum"><%= i%>&nbsp;</span> </a> 
 			<% 
 			}
 			if(endPage < pageCount) {

@@ -9,7 +9,7 @@ public class ComCdDTO {
 	private String cdGrpNm;
 	private String cd;
 	private String cdNm;
-	private String[] cdGrpnms = {"도서종류", "제품상태", "거래종류", "거래상태", "거래방식"};
+	private String[] cdGrpnms = {"거래종류", "도서종류", "제품상태", "거래상태", "거래방식"};
 	
 	// 시간을 시분초→연월일 로 바꿔주기 위한 변수
 	private String date; 
